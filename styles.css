@@ -85,25 +85,25 @@ section {
 
 }
 
-.arrow-img{
-    margin:15px;
+.arrow-img {
+    margin: 15px;
 }
 
-.currency-box{
+.currency-box {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-.currency{
+.currency {
     color: #777777;
     font-size: 14px;
 
 }
 
-.currency-value{
-    color:#555555;
+.currency-value {
+    color: #555555;
     font-size: 20px;
 
 }
