@@ -2,25 +2,28 @@ const convertButton = document.querySelector(".convert-button")
 const currencySelect = document.querySelector(".currency-select")
 
 
-function convertValues() {
+
+
+
+const convertValues = async () => {
 
     const inputCurrencyValue = document.querySelector(".input-currency").value
     const currencyValueToConvert = document.querySelector(".currency-value-to-convert")
     const currencyValueConverted = document.querySelector(".currency-value")
 
+    const data = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL").then(response => response.json())
 
-    const dolartoday = 4.99
-    const euroToday = 5.35
-    const libraToday = 6.2
-    const bitCoinToday = 127.7
+    const dolar = data.USDBRL.high
+    const euro = data.EURBRL.high
+    const bitcoin = data.BTCBRL.high
 
-
+    console.log(data)
 
     if (currencySelect.value == "dolar") {
         currencyValueConverted.innerHTML = new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "USD"
-        }).format(inputCurrencyValue / dolartoday)
+        }).format(inputCurrencyValue / dolar)
 
 
     }
@@ -29,7 +32,7 @@ function convertValues() {
         currencyValueConverted.innerHTML = new Intl.NumberFormat("de-DE", {
             style: "currency",
             currency: "EUR"
-        }).format(inputCurrencyValue / euroToday)
+        }).format(inputCurrencyValue / euro)
 
     }
 
@@ -43,24 +46,24 @@ function convertValues() {
         currencyValueConverted.innerHTML = new Intl.NumberFormat("de-UK", {
             style: "currency",
             currency: "GBP"
-        }).format(inputCurrencyValue / libraToday)
-    
+        }).format(inputCurrencyValue / libra)
+
     }
-    
+
     if (currencySelect.value == "Bitcoin") {
         currencyValueConverted.innerHTML = new Intl.NumberFormat("iso-BTC", {
             style: "currency",
             currency: "BTC"
-        }).format(inputCurrencyValue / bitCoinToday)
-    
+        }).format(inputCurrencyValue / bitcoin)
+
     }
-    
-  
+
+
 
 }
 
 
-function changeCurrency() {
+const changeCurrency = () => {
 
     const currencyName = document.getElementById("currency-name")
     const currencyImage = document.querySelector(".currency-img")
@@ -84,7 +87,7 @@ function changeCurrency() {
         currencyImage.src = "./assets/libra.png"
     }
 
-    
+
     if (currencySelect.value == "Bitcoin") {
         currencyName.innerHTML = "Bitcoin"
         currencyImage.src = "./assets/bitcoin.png"
